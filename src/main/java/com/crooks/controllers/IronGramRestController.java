@@ -4,6 +4,7 @@
 
 package com.crooks.controllers;
 
+import com.crooks.entities.Photo;
 import com.crooks.entities.User;
 import com.crooks.services.PhotoRepository;
 import com.crooks.services.UserRepository;
@@ -45,6 +46,13 @@ public class IronGramRestController {
     @RequestMapping(path = "/logout",method = RequestMethod.POST)
     public void logout(HttpSession session){
         session.invalidate();
+    }
+
+    @RequestMapping(path="/photos", method = RequestMethod.GET)
+    public Iterable<Photo> getPhotos(HttpSession session){
+        String username = (String) session.getAttribute("username");
+        User user = userRepo.findFirstByName(username);
+        return photoRepo.findByRecipient(user);
     }
 
 
