@@ -5,6 +5,8 @@
 package com.crooks.entities;
 
 import javax.persistence.*;
+import java.time.LocalDate;
+import java.time.LocalTime;
 
 /**
  * Created by johncrooks on 6/28/16.
@@ -25,17 +27,40 @@ public class Photo {
     @Column(nullable = false)
     String filename;
 
-    public Photo(int id, User sender, User recipient, String filename) {
+    @Column (nullable = false)
+    int viewLength;
+
+    @Column
+    Boolean isPublic;
+
+    @Column
+    Integer counter;
+
+    public Photo(int id, User sender, User recipient, String filename, int viewLength, Boolean isPublic, Integer counter) {
         this.id = id;
         this.sender = sender;
         this.recipient = recipient;
         this.filename = filename;
+        this.viewLength = viewLength;
+        this.isPublic = isPublic;
+        this.counter = 0;
     }
 
-    public Photo(User sender, User recipient, String filename) {
+    public Photo(User sender, User recipient, String filename, int viewLength, Boolean isPublic, Integer counter) {
         this.sender = sender;
         this.recipient = recipient;
         this.filename = filename;
+        this.viewLength = viewLength;
+        this.isPublic = isPublic;
+        this.counter = 0;
+    }
+
+    public Photo(User sender, User recipient, String filename, int viewLength, Boolean isPublic) {
+        this.sender = sender;
+        this.recipient = recipient;
+        this.filename = filename;
+        this.viewLength = viewLength;
+        this.isPublic = isPublic;
     }
 
     public Photo() {
@@ -72,4 +97,29 @@ public class Photo {
     public void setFilename(String filename) {
         this.filename = filename;
     }
+
+    public int getViewLength() {
+        return viewLength;
+    }
+
+    public void setViewLength(int viewLength) {
+        this.viewLength = viewLength;
+    }
+
+    public Boolean getPublic() {
+        return isPublic;
+    }
+
+    public void setPublic(Boolean aPublic) {
+        isPublic = aPublic;
+    }
+
+    public Integer getCounter() {
+        return counter;
+    }
+
+    public void setCounter(Integer counter) {
+        this.counter = counter;
+    }
 }
+

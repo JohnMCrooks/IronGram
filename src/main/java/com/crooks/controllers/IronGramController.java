@@ -38,27 +38,37 @@ public class IronGramController {
     }
 
     @RequestMapping(path="/upload", method = RequestMethod.POST)
-    public String upload(MultipartFile file, String receiver, HttpSession session) throws Exception {
+    public String upload(MultipartFile file, String receiver, int viewLength, HttpSession session, Boolean isPublic) throws Exception {
         String username = (String) session.getAttribute("username");
         User sender = userRepo.findFirstByName(username);
         User rec = userRepo.findFirstByName(receiver);
 
         if(sender==null || rec ==null){
-            throw new Exception("Can't find sender or reciever");
+            throw new Exception("Can't find sender or receiver");
         }
+        if(isPublic==null){ isPublic=false;}
 
-        File dir = new File("public/photos");
-        dir.mkdirs();
+        if(file.getContentType().contains("image")){
+            File dir = new File("public/photos");
+            dir.mkdirs();
 
-        File photoFile = File.createTempFile("photo", file.getOriginalFilename(), dir);  //photo is the prefix  added onto
-        FileOutputStream fos = new FileOutputStream(photoFile);
-        fos.write(file.getBytes());
+            File photoFile = File.createTempFile("photo", file.getOriginalFilename(), dir);  //photo is the prefix  added onto
+            FileOutputStream fos = new FileOutputStream(photoFile);
+            fos.write(file.getBytes());
 
-        Photo photo = new Photo(sender, rec, photoFile.getName());
-        photoRepo.save(photo);
+            Photo photo = new Photo(sender, rec, photoFile.getName(),viewLength, isPublic, 0);
+            photoRepo.save(photo);
+        }else{
+            throw new Exception("Wrong file type! We only take Images");
+        }
 
         return "redirect:/";
     }
 
+    @RequestMapping(path = "/logout",method = RequestMethod.POST)
+    public String logout(HttpSession session){
+        session.invalidate();
+        return "redirect:/";
+    }
 
 }
