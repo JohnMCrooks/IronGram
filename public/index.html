@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<!--
+  ~ Copyright (c) 2016.
+  -->
+
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <link rel="stylesheet" type="text/css" href="style.css">
+        <title>IronGram</title>
+
+        <style>
+        </style>
+
+
+
+    </head>
+    <body>
+        <div id="notLoggedIn" align="center">
+            <img src="TIG.png" height="131" width="200" />
+            <input type="text" placeholder="name" id="username">
+            <input type="password" placeholder="password" id="password"><br>
+            <button onclick="login()" align="center">Login</button>
+        </div>
+
+        <div id="loggedIn">
+            <table>
+                <form action="/upload" method="post" enctype="multipart/form-data">
+                   <tr>
+                       <td><input type="file" name="file"></td>
+                       <td><input type="text" name="receiver" placeholder="Receiver name" ></td>
+                   </tr>
+                    <tr>
+                      <td>  <input type="number" name="viewLength" placeholder="Time to view" ></td>
+                       <td> <input type="checkbox" name="isPublic">  Is this Public?</td>
+                    </tr>
+                    <tr>
+                        <td><button type="submit">Upload</button></td>
+                </form>
+                        <form  onclick="logout()">
+                           <td> <button type="submit">Log Out</button></td>
+                        </form>
+                </tr>
+            </table>
+
+
+
+            <div id ="photos" align="center">   </div>
+
+            <div>   </div>
+        </div>
+
+        <script src="jquery-3.0.0.js"></script>
+        <script src="main.js"></script>
+    </div>
+    </body>  <!--   end of body tag -->
+</html> <!--   end of HTML tag -->

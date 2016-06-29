@@ -45,6 +45,4 @@ crashlytics.properties
 crashlytics-build.properties
 fabric.properties
 *.db
-public/
-src/main/resources/static/
-src/main/resources/templates/
+
