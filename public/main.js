@@ -6,8 +6,7 @@ function getPhotos(){
             "url": "/photos",
             "success": function(data){
                 if (JSON.stringify(lastPhotosData) !== JSON.stringify(data)){
-
-                    $('#photos').empty();
+                    $('#photos').html("");
                     for (var i in data){
                         var elem = $("<img>");
                         elem.attr("src", "photos/" + data[i].filename);
@@ -43,15 +42,12 @@ function login(){
 
 function logout(){
     $.ajax({                                // Logout function
-
             "type": "POST",
             "url": "/logout",
             "success": function(){            //js doesn't care if you leave empty functions
                 $("#notLoggedIn").show();
                 $("#loggedIn").hide();
             }
-
-
         });
 }
 
@@ -65,7 +61,6 @@ $.ajax({                            // check to see what should be hidden
         } else {
             $("#loggedIn").hide();
         }
-
     }
 })
 

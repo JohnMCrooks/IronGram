@@ -15,10 +15,10 @@ background-color: #ECC77A;
 
                 /* the following code for a Color Gradient  was found at w3schools.com and is friggin awesome */
     background: orange; /* For browsers that do not support gradients */
-    background: -webkit-linear-gradient(left top, red, blue); /* For Safari 5.1 to 6.0 */
-    background: -o-linear-gradient(bottom right, red, blue); /* For Opera 11.1 to 12.0 */
-    background: -moz-linear-gradient(bottom right, red, blue); /* For Firefox 3.6 to 15 */
-    background: linear-gradient(to bottom right, red, blue); /* Standard syntax (must be last) E5B040 */
+    background: -webkit-linear-gradient(left top, #FF7E1A, #FEAA26); /* For Safari 5.1 to 6.0 */
+    background: -o-linear-gradient(bottom right, #FF7E1A, #FEAA26); /* For Opera 11.1 to 12.0 */
+    background: -moz-linear-gradient(bottom right, #FF7E1A, #FEAA26); /* For Firefox 3.6 to 15 */
+    background: linear-gradient(to bottom right, #FF7E1A, #FEAA26); /* Standard syntax (must be last) E5B040 */
     box-shadow: 0px 10px 20px;
 }
 #loggedIn{
@@ -38,7 +38,7 @@ background-color: #ECC77A;
     background: red; /* For browsers that do not support gradients */
     background: -webkit-linear-gradient(left top, #FF7E1A, #FEAA26); /* For Safari 5.1 to 6.0 */
     background: -o-linear-gradient(bottom right, #FF7E1A, #FEAA26); /* For Opera 11.1 to 12.0 */
-    background: -moz-linear-gradient(bottom right, #FF7E1A, #FEAA26); /* For Firefox 3.6 to 15 */
+    background: -moz-linear-gradient(bottom right, #FF7E1A, #FEAA26);; /* For Firefox 3.6 to 15 */
     background: linear-gradient(to bottom right, #FF7E1A, #FEAA26); /* Standard syntax (must be last) E5B040 */
 
 }

@@ -94,5 +94,9 @@ public class IronGramRestController {
             return userRepo.findFirstByName(username);
         }
     }
+    @RequestMapping(path = "/logout",method = RequestMethod.POST)
+    public void logout(HttpSession session){
+        session.invalidate();
+    }
 
 } //end rest Controller

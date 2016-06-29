@@ -62,14 +62,6 @@ public class IronGramController {
         }else{
             throw new Exception("Wrong file type! We only take Images");
         }
-
         return "redirect:/";
     }
-
-    @RequestMapping(path = "/logout",method = RequestMethod.POST)
-    public String logout(HttpSession session){
-        session.invalidate();
-        return "redirect:/";
-    }
-
 }
