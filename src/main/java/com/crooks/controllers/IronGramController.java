@@ -58,6 +58,7 @@ public class IronGramController {
 
             Photo photo = new Photo(sender, rec, photoFile.getName(),viewLength, isPublic, 0);
             photoRepo.save(photo);                                      //adding photo info to the Database
+
         }else{
             throw new Exception("Wrong file type! We only take Images");
         }
