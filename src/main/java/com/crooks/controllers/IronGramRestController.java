@@ -75,7 +75,7 @@ public class IronGramRestController {
                 }
             }
         }
-        return photoRepo.findByRecipient(user);
+        return photoRepo.findByRecipientAndIsPublic(user, false);
     }
 
     @RequestMapping(path="/public-photos", method = RequestMethod.GET)
@@ -85,4 +85,14 @@ public class IronGramRestController {
     }
 
 
-}
+    @RequestMapping(path ="/user",method=RequestMethod.GET)         //This route will help prevent the JS (and the function added in the main.js) from hiding the main Div when logged in
+    public User getUser(HttpSession session){
+        String username = (String) session.getAttribute("username");
+        if (username == null){
+            return null;
+        }else {
+            return userRepo.findFirstByName(username);
+        }
+    }
+
+} //end rest Controller
