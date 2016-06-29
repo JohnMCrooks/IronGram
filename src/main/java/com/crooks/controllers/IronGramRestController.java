@@ -42,7 +42,7 @@ public class IronGramRestController {
             throw new Exception("Wrong password!");
         }
         session.setAttribute("username", user.getName());
-        return user;         //When using JSON routes we don't redirect the page, that's handled by the front end
+        return user;                                                    //When using JSON routes we don't redirect the page, that's handled by the front end
     }
 
     @RequestMapping(path="/photos", method = RequestMethod.GET)
@@ -50,31 +50,27 @@ public class IronGramRestController {
         String username = (String) session.getAttribute("username");
         User user = userRepo.findFirstByName(username);
 
-        //Checking to see the size of the PhotoRepo
+                                                                        //Checking to see the size of the PhotoRepo
         Iterable<Photo> tempIterable =  photoRepo.findByRecipientAndIsPublic(user, false);
         int itSize=0;
+
         Iterator it = tempIterable.iterator();
         while ( it.hasNext()){
             it.next();
             itSize++;
         }
-        if (session.getAttribute("username")!=null){
-            if(itSize >0 ) {
+        if (session.getAttribute("username")!=null){                    //Making sure a user is logged in before displaying photos
+            if(itSize >0 ) {                                            //Making sure there are photos to display
                 for (Photo p : tempIterable) {
-                    if (p.getViewLength() > p.getCounter()) {
-                        p.setCounter(p.getCounter() + 1);
-                        System.out.println("count =" + p.getCounter());
-                        photoRepo.save(p);
+                    if (p.getViewLength() > p.getCounter()) {            //if the view length is greater than the current counter
+                        p.setCounter(p.getCounter() + 1);                // increment the counter
+                        photoRepo.save(p);                               // save the updated photo back into the Repo
 
                     } else if (p.getViewLength() <= p.getCounter()) {
-                        System.out.println(p.getId() + "  is getting deleted...");
-
                         Photo fileToDelete = photoRepo.findOne(p.getId());  //creating an object into which we insert the item(file) to delete
                         File fileOnDisk = new File("public/photos/" + fileToDelete.getFilename());
-                        fileOnDisk.delete(); //is highlighted bc we are not capturing the return value that that indicates the success of the deletion
-
-                        photoRepo.delete(p);
-                        System.out.println(p.getCounter() + " ----" + p.getViewLength());
+                        fileOnDisk.delete();                    //is highlighted bc we are not capturing the return value that that indicates the success of the deletion
+                        photoRepo.delete(p);                    // Delete photo from DB
                     }
                 }
             }

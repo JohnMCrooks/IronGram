@@ -48,16 +48,16 @@ public class IronGramController {
         }
         if(isPublic==null){ isPublic=false;}
 
-        if(file.getContentType().contains("image")){
+        if(file.getContentType().contains("image")){        //Checking to make sure the photo is actually a photo before Uploading it to the server
             File dir = new File("public/photos");
             dir.mkdirs();
 
-            File photoFile = File.createTempFile("photo", file.getOriginalFilename(), dir);  //photo is the prefix  added onto
+            File photoFile = File.createTempFile("photo", file.getOriginalFilename(), dir);  //adding a prefix and a unique number to the filename so there won't be any duplicates on the server
             FileOutputStream fos = new FileOutputStream(photoFile);
-            fos.write(file.getBytes());
+            fos.write(file.getBytes());                                 //Writing file to Disk
 
             Photo photo = new Photo(sender, rec, photoFile.getName(),viewLength, isPublic, 0);
-            photoRepo.save(photo);
+            photoRepo.save(photo);                                      //adding photo info to the Database
         }else{
             throw new Exception("Wrong file type! We only take Images");
         }
